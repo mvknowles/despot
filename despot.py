@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import sys
 import json
 import spotipy
 import argparse
@@ -59,9 +60,16 @@ def main():
     parser.add_argument("--client-secret", dest="client_secret", required=True)
     parser.add_argument(
             "--save-dir", dest="save_dir", default=DEFAULT_SAVE_DIR, type=Path)
+    parser.add_argument("--force", dest="force", action="store_true")
     args = parser.parse_args()
 
-    args.save_dir.mkdir(exist_ok=False)
+    try:
+        args.save_dir.mkdir(exist_ok=False)
+    except FileExistsError:
+        if args.force is False:
+            sys.stderr.write("Destination directory already exists.\n")
+            sys.stderr.write("Please remove, or force with --force\n")
+            sys.exit(1)
 
     spotify = spotipy.Spotify(auth_manager=SpotifyOAuth(
             client_id=args.client_id,
@@ -70,7 +78,7 @@ def main():
             redirect_uri=REDIRECT_URI))
 
     playlists_dir = args.save_dir.joinpath("playlists")
-    playlists_dir.mkdir(exist_ok=True)
+    playlists_dir.mkdir()
 
     print("Despot: Liberating your data to:", playlists_dir)
 
