@@ -11,6 +11,8 @@ You'll need a Spotify developer account.
 Usage:
 
 ```
-python3 despot.py --client-id=YOUR_CLIENT_ID --client-secret=YOUR_CLIENT_SECRET
+python3 despot.py --client-id=YOUR_CLIENT_ID \
+        --client-secret=YOUR_CLIENT_SECRET \
+        --save-dir=DESTINATION_DIRECTORY
 ```
 
