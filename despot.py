@@ -76,10 +76,10 @@ with DEFAULT_SAVE_DIR.joinpath("current_user_playlists.json").open("w") as fh:
     json.dump(results, fh)
 
 print("Fetching playlist contents")
-for playlist in results:
+for playlist_number, playlist in enumerate(results):
     print("Playlist:", playlist["name"])
 
-    playlist_path = playlists_dir.joinpath("{}.json".format(playlist["id"]))
+    playlist_path = playlists_dir.joinpath("{}.json".format(playlist_number))
     with playlist_path.open("w") as fh:
         results = depaginate(
                 spotify.user_playlist_tracks, playlist_id=playlist["id"])
