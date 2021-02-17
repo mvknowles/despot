@@ -1,6 +1,6 @@
 ## Despot
 
-This is a Python script for liberating your data from the once-great streaming
+This is a Python script to liberate your data from the once-great streaming
 serice known as Spotify.
 
 If you too think it's become a steaming pile, then feel free to dump your data
