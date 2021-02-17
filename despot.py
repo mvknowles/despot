@@ -47,7 +47,7 @@ spotify = spotipy.Spotify(auth_manager=SpotifyOAuth(
 
 
 def depaginate(fn, **kwargs):
-    untarded = []
+    loot = []
 
     for page in range(0, PAGE_FETCH_LIMIT):
         print("Request page number:", page)
@@ -55,11 +55,14 @@ def depaginate(fn, **kwargs):
         item_count = len(morsel["items"])
 
         if item_count == 0:
-            return untarded
+            return loot
 
-        untarded.extend(morsel["items"])
+        loot.extend(morsel["items"])
 
-    raise Exception("I think we just hammered spotify. They'll never recover.")
+    print("Too many requsts to Spotify for my comfort")
+    print("Returning incomplete data anyway.")
+
+    return loot
 
 
 playlists_dir = DEFAULT_SAVE_DIR.joinpath("playlists")
