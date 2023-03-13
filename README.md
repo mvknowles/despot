@@ -8,6 +8,8 @@ to JSON with this script.
 
 You'll need a Spotify developer account.
 
+Deezer is where it's at, if you want to remain lossless...
+
 Usage:
 
 ```
